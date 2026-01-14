@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         MrBeastify YouTube
 // @namespace    http://tampermonkey.net/
-// @version      1.0
+// @version      1.5
 // @description  YouTubeサムネイルにMrBeastオーバーレイを適用
 // @author       You
 // @match        *://*.youtube.com/*
@@ -9,6 +9,8 @@
 // @grant        GM_getValue
 // @grant        GM_registerMenuCommand
 // @run-at       document-idle
+// @updateURL    https://raw.githubusercontent.com/maebahesioru/kouhei-images/main/mrbeastify.user.js
+// @downloadURL  https://raw.githubusercontent.com/maebahesioru/kouhei-images/main/mrbeastify.user.js
 // ==/UserScript==
 
 (function() {
