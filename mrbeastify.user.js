@@ -19,7 +19,7 @@
     // 例: https://cdn.jsdelivr.net/gh/username/mrbeastify-images
     // ============================================
     const IMAGE_BASE_URL = 'https://cdn.jsdelivr.net/gh/maebahesioru/kouhei-images/image';
-    const TOTAL_IMAGES = 40;
+    const TOTAL_IMAGES = 81;
 
     const EXTENSION_NAME = 'MrBeastify';
 
