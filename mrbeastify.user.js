@@ -19,7 +19,7 @@
     // 例: https://cdn.jsdelivr.net/gh/username/mrbeastify-images
     // ============================================
     const IMAGE_BASE_URL = 'https://cdn.jsdelivr.net/gh/maebahesioru/kouhei-images/image';
-    const TOTAL_IMAGES = 81;
+    const TOTAL_IMAGES = 119;
 
     const EXTENSION_NAME = 'MrBeastify';
 
@@ -65,34 +65,29 @@
         overlayImage.id = EXTENSION_NAME;
         overlayImage.src = overlayImageURL;
 
-        // ランダムで左・中央・右を選択
-        const positions = ['left', 'center', 'right'];
-        const position = positions[Math.floor(Math.random() * positions.length)];
-
-        let leftValue, translateX;
-        switch (position) {
-            case 'left':
-                leftValue = '0%';
-                translateX = '0%';
-                break;
-            case 'right':
-                leftValue = '100%';
-                translateX = '-100%';
-                break;
-            default: // center
-                leftValue = '50%';
-                translateX = '-50%';
-        }
+        // 9箇所からランダムで選択（左上、上、右上、左、中央、右、左下、下、右下）
+        const positions = [
+            { left: '0%',   top: '0%',   translateX: '0%',    translateY: '0%' },    // 左上
+            { left: '50%',  top: '0%',   translateX: '-50%',  translateY: '0%' },    // 上
+            { left: '100%', top: '0%',   translateX: '-100%', translateY: '0%' },    // 右上
+            { left: '0%',   top: '50%',  translateX: '0%',    translateY: '-50%' },  // 左
+            { left: '50%',  top: '50%',  translateX: '-50%',  translateY: '-50%' },  // 中央
+            { left: '100%', top: '50%',  translateX: '-100%', translateY: '-50%' },  // 右
+            { left: '0%',   top: '100%', translateX: '0%',    translateY: '-100%' }, // 左下
+            { left: '50%',  top: '100%', translateX: '-50%',  translateY: '-100%' }, // 下
+            { left: '100%', top: '100%', translateX: '-100%', translateY: '-100%' }, // 右下
+        ];
+        const pos = positions[Math.floor(Math.random() * positions.length)];
 
         overlayImage.style.cssText = `
             position: absolute;
-            top: 0;
-            left: ${leftValue};
+            top: ${pos.top};
+            left: ${pos.left};
             max-height: 100%;
             max-width: 100%;
             height: auto;
             width: auto;
-            transform: translateX(${translateX}) ${flip ? 'scaleX(-1)' : ''};
+            transform: translate(${pos.translateX}, ${pos.translateY}) ${flip ? 'scaleX(-1)' : ''};
             z-index: 0;
             pointer-events: none;
             object-fit: contain;
