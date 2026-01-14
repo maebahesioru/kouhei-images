@@ -64,12 +64,32 @@
         const overlayImage = document.createElement('img');
         overlayImage.id = EXTENSION_NAME;
         overlayImage.src = overlayImageURL;
+
+        // ランダムで左・中央・右を選択
+        const positions = ['left', 'center', 'right'];
+        const position = positions[Math.floor(Math.random() * positions.length)];
+
+        let leftValue, translateX;
+        switch (position) {
+            case 'left':
+                leftValue = '0%';
+                translateX = '0%';
+                break;
+            case 'right':
+                leftValue = '100%';
+                translateX = '-100%';
+                break;
+            default: // center
+                leftValue = '50%';
+                translateX = '-50%';
+        }
+
         overlayImage.style.cssText = `
             position: absolute;
             top: 50%;
-            left: 50%;
-            width: 100%;
-            transform: translate(-50%, -50%) ${flip ? 'scaleX(-1)' : ''};
+            left: ${leftValue};
+            height: 100%;
+            transform: translate(${translateX}, -50%) ${flip ? 'scaleX(-1)' : ''};
             z-index: 0;
             pointer-events: none;
         `;
