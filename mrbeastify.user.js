@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         MrBeastify YouTube
 // @namespace    http://tampermonkey.net/
-// @version      1.5
+// @version      1.6
 // @description  YouTubeサムネイルにMrBeastオーバーレイを適用
 // @author       You
 // @match        *://*.youtube.com/*
@@ -21,7 +21,7 @@
     // 例: https://cdn.jsdelivr.net/gh/username/mrbeastify-images
     // ============================================
     const IMAGE_BASE_URL = 'https://cdn.jsdelivr.net/gh/maebahesioru/kouhei-images/image';
-    const TOTAL_IMAGES = 119;
+    const TOTAL_IMAGES = 131;
 
     const EXTENSION_NAME = 'MrBeastify';
 
