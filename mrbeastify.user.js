@@ -86,12 +86,16 @@
 
         overlayImage.style.cssText = `
             position: absolute;
-            top: 50%;
+            top: 0;
             left: ${leftValue};
-            height: 100%;
-            transform: translate(${translateX}, -50%) ${flip ? 'scaleX(-1)' : ''};
+            max-height: 100%;
+            max-width: 100%;
+            height: auto;
+            width: auto;
+            transform: translateX(${translateX}) ${flip ? 'scaleX(-1)' : ''};
             z-index: 0;
             pointer-events: none;
+            object-fit: contain;
         `;
         thumbnailElement.parentElement.insertBefore(
             overlayImage,
