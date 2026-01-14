@@ -65,29 +65,23 @@
         overlayImage.id = EXTENSION_NAME;
         overlayImage.src = overlayImageURL;
 
-        // 9箇所からランダムで選択（左上、上、右上、左、中央、右、左下、下、右下）
-        const positions = [
-            { left: '0%',   top: '0%',   translateX: '0%',    translateY: '0%' },    // 左上
-            { left: '50%',  top: '0%',   translateX: '-50%',  translateY: '0%' },    // 上
-            { left: '100%', top: '0%',   translateX: '-100%', translateY: '0%' },    // 右上
-            { left: '0%',   top: '50%',  translateX: '0%',    translateY: '-50%' },  // 左
-            { left: '50%',  top: '50%',  translateX: '-50%',  translateY: '-50%' },  // 中央
-            { left: '100%', top: '50%',  translateX: '-100%', translateY: '-50%' },  // 右
-            { left: '0%',   top: '100%', translateX: '0%',    translateY: '-100%' }, // 左下
-            { left: '50%',  top: '100%', translateX: '-50%',  translateY: '-100%' }, // 下
-            { left: '100%', top: '100%', translateX: '-100%', translateY: '-100%' }, // 右下
-        ];
-        const pos = positions[Math.floor(Math.random() * positions.length)];
+        // 完全ランダムな位置（0%〜100%）
+        const leftPercent = Math.random() * 100;
+        const topPercent = Math.random() * 100;
+
+        // 位置に応じてtranslateを調整（端に行くほど内側に寄せる）
+        const translateX = -leftPercent;
+        const translateY = -topPercent;
 
         overlayImage.style.cssText = `
             position: absolute;
-            top: ${pos.top};
-            left: ${pos.left};
+            top: ${topPercent}%;
+            left: ${leftPercent}%;
             max-height: 100%;
             max-width: 100%;
             height: auto;
             width: auto;
-            transform: translate(${pos.translateX}, ${pos.translateY}) ${flip ? 'scaleX(-1)' : ''};
+            transform: translate(${translateX}%, ${translateY}%) ${flip ? 'scaleX(-1)' : ''};
             z-index: 0;
             pointer-events: none;
             object-fit: contain;
